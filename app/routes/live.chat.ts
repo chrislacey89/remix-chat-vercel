@@ -1,6 +1,7 @@
 // resource route - for more see: https://remix.run/docs/en/v1/guides/resource-routes
 import type { LoaderFunction } from "@remix-run/node";
 import type { ChatMessage } from "~/chat";
+
 import {
   addUser,
   chat,
@@ -15,7 +16,7 @@ import eventStream from "~/eventStream";
 export const loader: LoaderFunction = async ({ request }) => {
   if (!request.signal) return new Response(null, { status: 500 });
   const user = await getSessionUser(request);
-
+console.log('global', global)
   // For more on ReadableStreams: https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream
   const stream = new ReadableStream({
     start(controller) {
